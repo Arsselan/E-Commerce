@@ -1,0 +1,69 @@
+STRIDE Analyse
+#main author: Miles
+#co author: Sarish
+Threat: Spoofing
+    Story:
+        A malicious person could try to purposefully overload our user database by creating multiple users.
+    Mitigation:
+        We'll have to add email-verificattion in order to throttle the actual input.
+    
+    Story:
+        Our user could have forgotton to log out at a public accessable computer.
+    Mitigation:
+        If there is no user-interaction for 10 minutes we'll automatically log them out of the System.
+
+    Story:
+        A commenter could add phishing or other malicious links to the comment section.
+    Mitigation:
+        We'll need to exchange any links that the commenter provides into a redirect link that warns our user of potential dangers of going on third party sites.
+        This is the most feasible solution as it would be hard to discern from malicious 3rd party sites to actual useful ones in every context.
+
+
+Tampering
+    Story:
+        A user might change the HTTP Call in order to try to get a cheaper price or similar results
+    Mitigation:
+        Don't allow setting of price/other sensitive data via HTTP Calls.
+    
+    Story:
+        A malicious person might want try to inject SQL or other commands via HTTP Calls and or user input areas.
+    Mitigation:
+        We'll need to never trust the user input and always sanatize any data that we interact with on the backend level, before serving it to the user.
+    
+    Story:
+        An Attacker might retrieve Login-Tokens from our user wich than can be used to purchase products in his name.
+    Mitigation:
+        Have a pair of tokens, one long living, one short living, that handle (re-) authentication of the user.
+
+
+Repudiation
+    Story:
+        Somebody used our users account to order products from out website without the user knowing.
+    Mitigation:
+        We'll send out order confirmation e-mails so that our user can always double check is something is going wrong.
+    
+
+Information Disclosure
+    Story:
+        Through malformed request it might be able, that a malicious user recieves information on a different user that he shouldn't get.
+    Mitigation:
+        In order ot stop this from happening we will always need to sanatize user input.
+
+    Story:
+        A seller on our platform might want to try to spy on his competition and retrieve their statistics.
+    Mitigation:
+        We'll stop this by implementing a rigerous and secure privileg hierarchy in the backend to make sure that a logged in user can only access the information that is desired for him.
+
+
+Denial of Service
+    Story:
+        A malicious person might try to overload our system with calls.
+    Mitigation:
+        Implement some sort of throttling based on the IP Adress of the caller.
+
+
+Elevation of Privileges
+    Story:
+        An Attacker might try to bruteforce admin session id's and thereby elevate his privileges.
+    Mitigation:
+	    Implement/use a safe session id algorithm that uses enough bits to mitigate this kind of Attack.
