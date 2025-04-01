@@ -1,0 +1,17 @@
+POST http://localhost:8000/api/register/ 
+content-type: application/json 
+
+{ "name": "leleles" ,"email": "jnr@gmail.com", "password":"Pass12345!" }
+
+### 
+
+POST http://localhost:8000/api/signup/
+content-type: application/json 
+
+{ "username": "tata" , "password":"blablabla!" , "email": "myles@gmail.comm" }
+
+###
+
+GET http://localhost:8000/api/test_token/
+Content-Type: application/json 
+Authorization: Token 9e5b7870c1ddf22d2a6b1ff74eabfef51c1432a0 

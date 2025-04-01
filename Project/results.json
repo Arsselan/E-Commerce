@@ -1,0 +1,401 @@
+{
+	"kics_version": "v1.7.11",
+	"files_scanned": 6,
+	"lines_scanned": 237,
+	"files_parsed": 5,
+	"lines_parsed": 205,
+	"lines_ignored": 28,
+	"files_failed_to_scan": 0,
+	"queries_total": 362,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 1,
+		"INFO": 0,
+		"LOW": 6,
+		"MEDIUM": 17,
+		"TRACE": 0
+	},
+	"total_counter": 24,
+	"total_bom_resources": 0,
+	"start": "2023-12-11T21:48:47.273250677Z",
+	"end": "2023-12-11T21:48:57.555138918Z",
+	"paths": [
+		"/path"
+	],
+	"queries": [
+		{
+			"query_name": "Missing User Instruction",
+			"query_id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
+			"query_url": "https://docs.docker.com/engine/reference/builder/#user",
+			"severity": "HIGH",
+			"platform": "Dockerfile",
+			"category": "Build Process",
+			"description": "A user should be specified in the dockerfile, otherwise the image will run as root",
+			"description_id": "eb49caf6",
+			"files": [
+				{
+					"file_name": "../../path/Frontend/Dockerfile",
+					"similarity_id": "1977fba555a3441e1fe8c185d2c232cc75dca9f78658762ecdd1d3dd534ebefe",
+					"line": 2,
+					"issue_type": "MissingAttribute",
+					"search_key": "FROM={{node:14}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+					"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+				}
+			]
+		},
+		{
+			"query_name": "Container Traffic Not Bound To Host Interface",
+			"query_id": "451d79dc-0588-476a-ad03-3c7f0320abb3",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Networking and Firewall",
+			"description": "Incoming container traffic should be bound to a specific host interface",
+			"description_id": "909d1bcd",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "da4a96daacac5fa4e87e6134e6c3a043d2f832190213bd08ba809dcdb94ec5b7",
+					"line": 17,
+					"issue_type": "IncorrectValue",
+					"search_key": "services.api.ports",
+					"search_line": 17,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+					"actual_value": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "495dd89ff653ec0f4ee19359790e2846bc0882706be3ec4c26706aca5d63d92c",
+					"line": 9,
+					"issue_type": "IncorrectValue",
+					"search_key": "services.frontend.ports",
+					"search_line": 9,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
+					"actual_value": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
+				}
+			]
+		},
+		{
+			"query_name": "Healthcheck Not Set",
+			"query_id": "698ed579-b239-4f8f-a388-baa4bcb13ef8",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Availability",
+			"description": "Check containers periodically to see if they are running properly.",
+			"description_id": "449b7c5c",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "6d60c98aadbf0b64829a7dffa25aaf176ac32b3f6efdcb24ece32527190df8c8",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "Healthcheck should be defined.",
+					"actual_value": "Healthcheck is not defined."
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "21c123acc5058112a54e92c71faa819c06b5620f60d79a3035862b2869231bb9",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "Healthcheck should be defined.",
+					"actual_value": "Healthcheck is not defined."
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "8174a946fff733688c2858f7322f6b9dca1a695f8ae89acc09b3c1f85481fe69",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "Healthcheck should be defined.",
+					"actual_value": "Healthcheck is not defined."
+				}
+			]
+		},
+		{
+			"query_name": "Host Namespace is Shared",
+			"query_id": "4f31dd9f-2cc3-4751-9b53-67e4af83dac0",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#pid",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Resource Management",
+			"description": "The hosts process namespace should not be shared by containers",
+			"description_id": "39a43177",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "a8e4c062218a877ceb31394a8112cd93e2bcb643fc690b20e7485f7ad1b7d59b",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "There should be a pid mode declared other than 'host'",
+					"actual_value": "There is no pid mode declared"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "fd22fdbccb0a742120789ac22f04694fa30c74a256b6ce3a7ea999b73112e2f7",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "There should be a pid mode declared other than 'host'",
+					"actual_value": "There is no pid mode declared"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "eda6fdd5c412e79d19ff96f059b309014404c41045d5b2de085fae95d95f043f",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "There should be a pid mode declared other than 'host'",
+					"actual_value": "There is no pid mode declared"
+				}
+			]
+		},
+		{
+			"query_name": "Memory Not Limited",
+			"query_id": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Resource Management",
+			"description": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
+			"description_id": "8fcb9f7d",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "f3c6962c43564b1df7a9ab6fc2bd7d37fa897cd1d0d273d850e39b44ef21e49b",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.memory' should be defined",
+					"actual_value": "'deploy' is not defined"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "bf377803b364485d6e99ec59b28ddb2657d0c451115f34b2c59c9f6dd1145977",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.memory' should be defined",
+					"actual_value": "'deploy' is not defined"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "d4c44ab127b734413abde0dae8bb51a88b9c4b26ddace2e65cd05434e5f4cc61",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.memory' should be defined",
+					"actual_value": "'deploy' is not defined"
+				}
+			]
+		},
+		{
+			"query_name": "Networks Not Set",
+			"query_id": "ce14a68b-1668-41a0-ab7d-facd9f784742",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#networks",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Networking and Firewall",
+			"description": "Setting networks in services ensures you are not using dockers default bridge (docker0), which shares traffic bewteen all containers.",
+			"description_id": "3743a217",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "1228a096bac8be544d579f1d8eb7904c9c271148c95085f6385e63eaf7308a81",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "There should be a network declared for the service 'db'",
+					"actual_value": "There is no network declared for the service 'db'"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "41987d60ea8efb4446b87eea548654583f695a80d97cb2ef63206085f553f3e2",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "There should be a network declared for the service 'api'",
+					"actual_value": "There is no network declared for the service 'api'"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "f38f9273c7c268186fde8fe308b86296331764999159b9f0249b9916f364177b",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "There should be a network declared for the service 'frontend'",
+					"actual_value": "There is no network declared for the service 'frontend'"
+				}
+			]
+		},
+		{
+			"query_name": "Security Opt Not Set",
+			"query_id": "610e266e-6c12-4bca-9925-1ed0cd29742b",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
+			"severity": "MEDIUM",
+			"platform": "DockerCompose",
+			"category": "Resource Management",
+			"description": "Attribute 'security_opt' should be defined.",
+			"description_id": "83fb7a65",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "3ea13e3483ea807f5f92675f51de76ea9cecc7889347da40f9009224895311b4",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'security_opt' attribute",
+					"actual_value": "Docker compose file does not have 'security_opt' attribute"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "5b9d6d35e7157e328182c9af3856b099b1a245e6f1e45acd9b578e28dae076dd",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'security_opt' attribute",
+					"actual_value": "Docker compose file does not have 'security_opt' attribute"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "57de3dfd0a2ddcebe0644c2eaa0f50da73d5f899896681b407ca47d9965e1aa1",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'security_opt' attribute",
+					"actual_value": "Docker compose file does not have 'security_opt' attribute"
+				}
+			]
+		},
+		{
+			"query_name": "Container Capabilities Unrestricted",
+			"query_id": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
+			"severity": "LOW",
+			"platform": "DockerCompose",
+			"category": "Resource Management",
+			"description": "Some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.",
+			"description_id": "1ddab108",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "77aaf90ad4a3c61cb4c603ab09b07129739433420ecffcd349fef118729715c2",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'cap_drop' attribute",
+					"actual_value": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "6b48aac665797ef2ad1e88d26d0e20de1aa2c55c957c7b76976dbab9786cc08f",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'cap_drop' attribute",
+					"actual_value": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "cf1c4c41265bf6085a8d490fa4cc2779eeef5735a6e9e370eff3a78cf0b73dce",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "Docker compose file to have 'cap_drop' attribute",
+					"actual_value": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
+				}
+			]
+		},
+		{
+			"query_name": "Cpus Not Limited",
+			"query_id": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3",
+			"query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+			"severity": "LOW",
+			"platform": "DockerCompose",
+			"category": "Resource Management",
+			"description": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
+			"description_id": "d58d94a1",
+			"files": [
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "2cd335b847cef6b4197040edb7a32f3e548170b731260aeb2476c009a09eb10a",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.api",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.cpus' should be defined",
+					"actual_value": "'deploy' is not defined"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "60b3f68df0390a8cee2aa1bacaa27041a9a7b8668fc00e2b218ee7eeffe52299",
+					"line": 24,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.db",
+					"search_line": 24,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.cpus' should be defined",
+					"actual_value": "'deploy' is not defined"
+				},
+				{
+					"file_name": "../../path/docker-compose.yml",
+					"similarity_id": "fd3e624f72b2349a9c065d0f2a17d189ae93f9925ede589ad00eca6297cdeef1",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "services.frontend",
+					"search_line": 7,
+					"search_value": "",
+					"expected_value": "'deploy.resources.limits.cpus' should be defined",
+					"actual_value": "'deploy' is not defined"
+				}
+			]
+		}
+	]
+}
